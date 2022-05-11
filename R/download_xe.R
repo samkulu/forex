@@ -9,7 +9,7 @@
 #'
 #' @examples
 #' dt <- Sys.Date()
-#' dts <- seq.Date(dt-30, dt, by = "days")
+#' dts <- seq.Date(dt-60, dt, by = "days")
 #' tmp <- download_xe(dts, fx="CHF")
 #' tmp <- download_xe(dts, fx="USD")
 #' tmp <- download_xe(dts, fx="EUR")
@@ -32,8 +32,7 @@ download_xe <- function(dts = NA, fx ="CHF", exDir = "../forexXE"){
       nms <- basename(fls)
       nms <- substr(nms, 1, 8)
       tmp <- as.Date(nms, format ="%Y%m%d")
-      idx <- !dts %in% tmp
-      dts <- dts[idx]
+      dts <- dts[!dts %in% tmp]
       dts <- sort(dts, decreasing = T)
       # Process Range
       result <- sapply(dts, download_xe, fx = fx, exDir = exDir)
@@ -45,8 +44,7 @@ download_xe <- function(dts = NA, fx ="CHF", exDir = "../forexXE"){
       nms <- basename(fls)
       nms <- substr(nms, 1, 8)
       tmp <- as.Date(nms, format ="%Y%m%d")
-      idx <- !dts %in% tmp
-      dts <- dts[idx]
+      dts <- dts[!dts %in% tmp]
       dts <- sort(dts, decreasing = T)
       # Process date vector
       result <- sapply(dts, download_xe, fx = fx, exDir = exDir)
