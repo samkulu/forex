@@ -8,8 +8,7 @@ Author: person(given = "Samuel",
              email = "samkulu@swisslancer.com",
              comment = c(ORCID = "0000-0003-2165-791X"))
 Maintainer: The package maintainer <samkulu@swisslancer.com>
-Description: Download currency rates from different open sources.     
-Read and transform data into data frames. 
+Description: Download currency rates from different open sources. Read and transform data into data frames. 
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
