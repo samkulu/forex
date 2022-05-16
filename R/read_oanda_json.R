@@ -19,7 +19,7 @@ read_oanda_json <- function(file_or_txt){
     if(is.null(dim(data))) return(NULL)
   }
 
-  # VERY IMPORTAN OPTION
+  # VERY IMPORTANT OPTION
   # stringsAsFactors = FALSE
   # Under Windows it is characters per defeault (HERE)
   # Under Unix / Linux it is factors per default
