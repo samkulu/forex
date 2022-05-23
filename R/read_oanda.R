@@ -47,12 +47,13 @@ read_oanda <- function(fxPair = "USDCHF", fromDate = NA, dest = "../forexOANDA")
 
   # Return result
   result <- do.call(rbind, json[!isNull]) %>%
-            arrange(DATE) %>% distinct()
+            dplyr::arrange(DATE) %>% dplyr::distinct() %>%
+            dplyr::select(DATE, VALUE)
 
   # Invert
   if (doInvert) result$VALUE <- 1/result$VALUE
 
   # Return
-  tibble(result)
+  tibble::tibble(result)
 
 }

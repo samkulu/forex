@@ -14,34 +14,22 @@
 #' names(listFX) <- fxPairs
 #' dataOANDA <- get_table(fx)
 get_table <- function(listFX){
-  # Make Data available for export
-  # Just for export and transparency
-  result <- listFX[[1]] %>% select(DATE, VALUE)
-  names(result)[2] <- names(listFX)[1]
-
-  for(i in 2:length(listFX)){
-    result <- merge(result,listFX[[i]] %>% select(DATE, VALUE),
-                    by.order = "Datum", all=TRUE)
-    names(result)[i+1] <- names(listFX)[i]
-  }
-
-  # Fill missing dates
-  r <- range(result$DATE)
-  dts <- seq(r[1], r[2], by = "days")
-  missing <- dts[!dts %in% result$DATE]
-
-  if(!all(dts %in% result$DATE)) {
-    # Add missing dts
-    # Order by Datum
-    # Fill with tidyr "down"
-    #   same as last observation carried forward (locf)
-    result <- result %>%
-              add_row(DATE = missing) %>%
-              arrange(DATE) %>%
-              tidyr::fill(names(result), .direction = "down" )
-
-  }
+  # Data available for 2-dim export
+  # For listFX to dataframe
+  # See https://daranzolin.github.io/2016-12-10-join-list-dataframes/
+  result <- listFX %>%
+            # Joining a List of Data Frames
+            purrr::reduce(dplyr::full_join, by = "DATE") %>%
+            # Rename merged columns
+            purrr::set_names(c("DATE", names(listFX))) %>%
+            # DATE Order
+            dplyr::arrange(DATE) %>%
+            # Fill missing dates
+            tidyr::complete(DATE = seq(range(DATE)[1],
+                                       range(DATE)[2], by = "days")) %>%
+            # Fill NA values
+            tidyr::fill(names(listFX), .direction = "down")
 
   # Return
-  tibble(result)
+  tibble::tibble(result)
 }
