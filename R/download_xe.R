@@ -13,7 +13,7 @@
 #' tmp <- download_xe(dts, fx="CHF")
 #' tmp <- download_xe(dts, fx="USD")
 #' tmp <- download_xe(dts, fx="EUR")
-download_xe <- function(dts = NA, fx ="CHF", exDir = "../forexXE"){
+download_xe <- function(dts = NA, fx ="CHF", exDir = "../forex_xe"){
   # URL
   url <- "https://www.xe.com/currencytables/?from=%fx%&date=%yyyy-MM-dd%"
 

@@ -9,7 +9,7 @@
 #' @examples
 #' fxPairs <- c("USDCHF","EURCHF", "GBPCHF", "CADCHF")
 #' load_oanda(fxPairs)
-load_oanda <- function(fxPairs, path = "../forexOanda"){
+load_oanda <- function(fxPairs, path = "../forex_oanda"){
   # Read each forex pair
   fx <- lapply(fxPairs, read_oanda)
   names(fx) <- fxPairs

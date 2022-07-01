@@ -11,7 +11,7 @@
 #' read_oanda("CHFUSD")
 #' read_oanda("CHFEUR")
 #' read_oanda("EURCHF")
-read_oanda <- function(fxPair = "USDCHF", fromDate = NA, dest = "../forexOANDA"){
+read_oanda <- function(fxPair = "USDCHF", fromDate = NA, dest = "../forex_oanda"){
   message(fxPair)
 
   # Source Path

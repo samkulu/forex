@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' download_oanda()
-download_oanda <- function(fxPair = NA, dest = "../forexOANDA",
+download_oanda <- function(fxPair = NA, dest = "../forex_oanda",
                           price = "mid",
                           startDate = NA, monthComplete = TRUE,
                           verbose = FALSE){
