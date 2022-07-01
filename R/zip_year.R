@@ -18,7 +18,7 @@ zip_year <- function(year = format(Sys.Date(),"%Y"),
                      src = "../forex_oanda",
                      dest = "./data/oanda"){
   message(year)
-browser()
+
   # Source files
   if(is.na(src) && exists("user")) src <- user$DESTINATION
   if(is.na(src)) stop("Destination missing!")
@@ -47,8 +47,8 @@ browser()
   # Goto source location
   setwd(src)
 
-  # Get Files to archive
-  if(exists("cacheFLS"))
+  # Check File cache OR Get Files to archive
+  if(exists("cacheFLS") && file.exists(file.path(getwd(), cacheFLS[1])))
     fls <- cacheFLS
   else
     cacheFLS <<- fls <- list.files(recursive = TRUE)
