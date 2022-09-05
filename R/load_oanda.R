@@ -11,9 +11,8 @@
 #' load_oanda(fxPairs)
 load_oanda <- function(fxPairs, path = "../forex_oanda"){
   # Read each forex pair
-  fx <- lapply(fxPairs, read_oanda)
-  names(fx) <- fxPairs
+  listFX <- get_oanda(fxPairs)
 
   # Load into global Environment
-  dataOANDA <<- get_table(fx)
+  dataOANDA <<- get_table(listFX)
 }

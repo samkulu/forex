@@ -8,8 +8,13 @@
 #' @export
 #'
 #' @examples
-#' unzip_year(2020)
-#' sapply(1990:2019, unzip_year)
+#' # OANDA
+#' unzip_year(2022)
+#' sapply(1995:2021, unzip_year)
+#'
+#' # XE
+#' unzip_year(2022, dest = "../forex_xe", src = "./data/xe")
+#' sapply(1995:2021, unzip_year, dest = "../forex_xe", src = "./data/xe")
 unzip_year <- function(year = format(Sys.Date(),"%Y"),
                        dest = "../forex_oanda",
                        src = "./data/oanda"){

@@ -1,7 +1,7 @@
 Package: forex
 Type: Package
 Title: Foreign Exchange (FOREX)
-Version: 0.1.0
+Version: 0.1.2
 Author: person(given = "Samuel",
              family = "Meichtry",
              role = c("auth","cre"),
@@ -9,6 +9,11 @@ Author: person(given = "Samuel",
              comment = c(ORCID = "0000-0003-2165-791X"))
 Maintainer: The package maintainer <samuel.meichtry@swisslancer.com>
 Description: Download currency rates from different open sources. Read and transform data into data frames. 
-License: GPL-3
+License: Private
 Encoding: UTF-8
 LazyData: true
+Depends:
+    R (>= 4.00),
+    tibble, 
+    dplyr, 
+    jsonlite

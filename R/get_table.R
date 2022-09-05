@@ -7,17 +7,14 @@
 #'
 #' @examples
 #' fxPairs <- c("USDCHF", "EURCHF", "CZKCHF",
-#'              "GBPCHF", "CADCHF", "JPYCHF")
+#'              "GBPCHF", "CADCHF", "JPYCHF", "CHFCHF")
 #'
 #' fxPairs <- c("USDCHF", "EURCHF", "CZKCHF",
 #'              "GBPCHF", "CADCHF", "JPYCHF",
 #'              "RUBCHF", "XAUCHF", "DKKCHF",
 #'              "AUDCHF", "FRFCHF")
 #'
-#' listFX <- lapply(fxPairs, read_oanda)
-#' names(listFX) <- fxPairs
-#'
-#' listFX <- get_list(fxPairs)
+#' listFX <- get_oanda(fxPairs)
 #'
 #' dataOANDA <- get_table(listFX)
 #' write_xl(dataOANDA)

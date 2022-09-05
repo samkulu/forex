@@ -13,9 +13,12 @@
 #' read_oanda("EURCHF")
 read_oanda <- function(fxPair = "USDCHF", fromDate = NA, dest = "../forex_oanda"){
   message(fxPair)
+  stopifnot(nchar(fxPair) == 6)
 
   # Source Path
   path <- file.path(dest, fxPair)
+
+  # Source Files
   fls <- list.files(path, fxPair, recursive = TRUE, full.names = TRUE)
 
   # Check Number of files
@@ -25,10 +28,27 @@ read_oanda <- function(fxPair = "USDCHF", fromDate = NA, dest = "../forex_oanda"
     path2 <- file.path(dest, fxPair2)
     fls <- list.files(path2, fxPair2, recursive = TRUE, full.names = TRUE)
     # Check Number of files
-    stopifnot(length(fls) > 0)
-    # Flag
-    doInvert <- TRUE
+    if(length(fls) > 0){
+
+      # Flag for Inversion (only suitable for mid quotes!)
+      doInvert <- TRUE
+
+    } else {
+
+      # Check Identity where no conversion is needed
+      if(substr(fxPair,1,3) == substr(fxPair,4,6)){
+        r <- list.files(list.files(gsub(fxPair, "", path), full.names = TRUE)[1]) %>%
+             substr(., 1,7) %>% paste0(.,"-01")%>% range() %>% as.Date()
+        dts <- seq(from=r[1], to=r[2], by="days")
+        return(tibble::tibble(DATE = dts ,VALUE = as.double(1)))
+      } else {
+        stop("Missing Files!")
+      }
+
+    }
+
   } else {
+    # No Inversion
     doInvert <- FALSE
   }
 
