@@ -73,7 +73,8 @@ download_xe <- function(dts = NA, fx ="CHF", exDir = "../forex_xe"){
     u <- gsub("%yyyy-MM-dd%", dt, u)
     message(u)
     # Download
-    page <- readLines(u, warn = FALSE)
+    # page <- readLines(u, warn = FALSE)
+    page <- read_get(u)
     writeLines(page, filename)
   }
 }

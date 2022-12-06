@@ -107,11 +107,13 @@ download_oanda <- function(fxPair = NA, dest = "../forex_oanda",
 
         # GET download w/o cookie (u = url)
         tryCatch({
-          txt <- readLines(u, warn = FALSE)
+          # txt <- readLines(u, warn = FALSE)
+          txt <- read_get(u)
         },
         error=function(cond) {
           message(cond)
-          txt <- readLines(u, warn = FALSE)
+          # txt <- readLines(u, warn = FALSE)
+          txt <- read_get(u)
           return(NULL)
         })
 
