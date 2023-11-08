@@ -9,10 +9,10 @@
 #'
 #' @examples
 #' zip_year()
-#' zip_year(2021)
+#' zip_year(2022)
 #' sapply(1979:2020, zip_year)
 #' rm(cacheFLS)
-#' zip_year(2021, src = "../forex_xe", dest = "./data/xe")
+#' zip_year(2022, src = "../forex_xe", dest = "./data/xe")
 #' zip_year(src = "../forex_xe", dest = "./data/xe")
 zip_year <- function(year = format(Sys.Date(),"%Y"),
                      src = "../forex_oanda",
