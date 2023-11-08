@@ -22,7 +22,7 @@ download_oanda <- function(fxPair = NA, dest = "../forex_oanda",
 
   # Download pattern
   # old: pattern <- "https://www.oanda.com/fx-for-business/historical-rates/api/data/update/?&source=OANDA&adjustment=0&base_currency=%baseCurrency%&start_date=%sDate%&end_date=%eDate%&period=daily&price=%price%&view=graph&quote_currency_0=%quoteCurrency%"
-  # New since 223-07-03
+  # New since 2023-07-03
   # e.g. pattern <- "https://fxds-hcc.oanda.com/api/data/update/?&source=OANDA&adjustment=0&base_currency=USD&start_date=2023-5-1&end_date=2023-7-1&period=daily&price=bid&view=graph&quote_currency_0=EUR&quote_currency_1=&quote_currency_2=&quote_currency_3=&quote_currency_4=&quote_currency_5=&quote_currency_6=&quote_currency_7=&quote_currency_8=&quote_currency_9="
   pattern <- "https://fxds-hcc.oanda.com/api/data/update/?&source=OANDA&adjustment=0&base_currency=%baseCurrency%&start_date=%sDate%&end_date=%eDate%&period=daily&price=%price%&view=graph&quote_currency_0=%quoteCurrency%"
 
