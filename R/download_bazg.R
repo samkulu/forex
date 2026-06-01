@@ -9,6 +9,7 @@
 #' @examples
 #' download_bazg()
 #' download_bazg(2025)
+#' download_bazg(2026)
 #' sapply(2024:1990, download_bazg)
 download_bazg <- function(year = NULL, dest = "../forex_bazg"){
 
@@ -17,6 +18,7 @@ download_bazg <- function(year = NULL, dest = "../forex_bazg"){
 
   dir_bazg <- file.path(dest, year)
   if(!dir.exists(dir_bazg)) dir.create(dir_bazg, recursive = TRUE)
+
 
   # URL
   url <- "https://www.backend-rates.bazg.admin.ch/daily?d=%YYYYMMDD%&locale=de"
@@ -27,6 +29,11 @@ download_bazg <- function(year = NULL, dest = "../forex_bazg"){
   if(toDate > Sys.Date()) toDate <- Sys.Date()
 
   dts <- seq.Date(from = fromDate, to = toDate, by = "day")
+
+  # Export only missing
+  dts_exist <- list.files(dir_bazg) %>% substr(., 1,8) %>%
+               curl::parse_date() %>% as.Date()
+  dts <- dts[!dts %in% dts_exist]
 
   # Download jsons
   for(dtLong in  format(dts, "%Y%m%d")){
