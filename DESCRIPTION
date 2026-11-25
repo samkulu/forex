@@ -16,4 +16,6 @@ Depends:
     R (>= 4.00),
     tibble, 
     dplyr, 
-    jsonlite
+    jsonlite, 
+    DBI,
+    duckdb
