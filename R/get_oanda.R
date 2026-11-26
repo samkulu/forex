@@ -12,10 +12,10 @@
 get_oanda <- function(fxPairs, method = "db"){
 
   # Check
-  stopifnot(method %in% c("fs", "db"))
+  stopifnot(method %in% c("json", "db"))
 
   # Read oanda quotes
-  if (method == "fs"){
+  if (method == "json"){
     # Read from file system
     listFX <- lapply(fxPairs, read_oanda)
   } else {
