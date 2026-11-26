@@ -1,4 +1,4 @@
-#' Get Forex Table
+#' Get Forex Table with DATE with tidy FXPAIR columns
 #'
 #' @param fx
 #'
@@ -22,14 +22,25 @@ get_table <- function(listFX){
   # Check names
   stopifnot(!is.null(names(listFX)))
 
+  # Find keys
+  nms <- names(listFX[[1]])
+  keys <- setdiff(nms, c("FXPAIR","VALUE"))
+
+
+  # Remove FXPAIR Column
+  if("FXPAIR" %in% nms)
+    listFX <- lapply(listFX, function(x) x %>% select(keys, VALUE))
+
+
   # Data available for 2-dim export
   # For listFX to dataframe
   # See https://daranzolin.github.io/2016-12-10-join-list-dataframes/
+
   result <- listFX %>%
             # Joining a List of Data Frames
-            purrr::reduce(dplyr::full_join, by = "DATE") %>%
+            purrr::reduce(dplyr::full_join, by = keys) %>%
             # Rename merged columns
-            purrr::set_names(c("DATE", names(listFX))) %>%
+            purrr::set_names(c(keys, names(listFX))) %>%
             # DATE Order
             dplyr::arrange(DATE) %>%
             # Fill missing dates
